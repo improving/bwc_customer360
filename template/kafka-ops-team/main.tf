@@ -30,12 +30,12 @@ module "staging_environment" {
   }
 }
 
-module "production_environment" {
-  source = "../modules/confluent_cloud_environment"
-
-  environment_display_name = "production"
-
-  providers = {
-    confluent = confluent
-  }
-}
+//module "production_environment" {
+//  source = "../modules/confluent_cloud_environment"
+//
+//  environment_display_name = "production"
+//
+//  providers = {
+//    confluent = confluent
+//  }
+//}

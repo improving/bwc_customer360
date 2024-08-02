@@ -1,11 +1,11 @@
 {
   "generators": [
-    "customer-profiles",
-    "item-profiles",
-    "orders"
+    "system-a-customers",
+    "system-b-customers",
+    "id-mappings"
   ],
   "overrides": {
-    "customer-profiles": {
+    "system-a-customers": {
       "localConfigs": {
         "throttleMs": {
           "_gen": "uniformDistribution",
@@ -16,7 +16,7 @@
         }
       }
     },
-    "item-profiles": {
+    "system-b-customers": {
       "localConfigs": {
         "throttleMs": {
           "_gen": "uniformDistribution",
@@ -27,13 +27,13 @@
         }
       }
     },
-    "orders": {
+    "id-mappings": {
       "localConfigs": {
         "throttleMs": {
           "_gen": "uniformDistribution",
           "bounds": [
-            5,
-            200
+            10000,
+            60000
           ]
         }
       }

@@ -1,6 +1,6 @@
 {
-  "name": "customer-profiles",
-  "topic": "shadowtraffic.customer.profile",
+  "name": "system-b-customers",
+  "topic": "shadowtraffic.customers.system-b",
   "key": {
     "_gen": "uuid"
   },
@@ -35,7 +35,7 @@
   "localConfigs": {
     "kafkaValueAvroSchemaHint": {
       "_gen": "loadJsonFile",
-      "file": "/schemas/avro/customer.avsc"
+      "file": "/schemas/avro/customer-b.avsc"
     }
   }
 }

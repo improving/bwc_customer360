@@ -1,7 +1,7 @@
 {
   "type": "record",
   "namespace": "shadowtraffic.customer",
-  "name": "profileValue",
+  "name": "CustomerA",
   "fields": [
     {
       "name": "name",

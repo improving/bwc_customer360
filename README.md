@@ -182,7 +182,7 @@ Provision the cluster, Flink compute pool (optional), and cluster API Keys -
 
 > Note: Make sure the aliased provider and kafka topic resources are commented out.
 
-1. `cd template/kafka-product-team-inventory/staging`
+1. `cd template/kafka-product-team-customer/staging`
 2. `terraform init`
 3. `terraform apply` # approve after review
 

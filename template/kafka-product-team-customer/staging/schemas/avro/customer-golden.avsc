@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "namespace": "shadowtraffic.customer",
+  "name": "GoldenCustomer",
+  "fields": [
+    {
+      "name": "aCustomerID",
+      "type": "string"
+    },
+    {
+      "name": "bCustomerID",
+      "type": "string"
+    }
+  ]
+}

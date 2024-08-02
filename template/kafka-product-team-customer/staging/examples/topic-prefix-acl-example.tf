@@ -3,7 +3,7 @@
 //
 //resource "confluent_service_account" "shadow-consumer" {
 //  display_name = "shadow-consumer"
-//  description  = "Service account to consume from 'orders' topic of 'inventory' Kafka cluster"
+//  description  = "Service account to consume from 'orders' topic of 'customer' Kafka cluster"
 //}
 //
 //resource "confluent_api_key" "shadow-consumer-kafka-api-key" {
@@ -16,9 +16,9 @@
 //  }
 //
 //  managed_resource {
-//    id          = module.inventory_cluster.id
-//    api_version = module.inventory_cluster.confluent_kafka_cluster.api_version
-//    kind        = module.inventory_cluster.confluent_kafka_cluster.kind
+//    id          = module.customer_cluster.id
+//    api_version = module.customer_cluster.confluent_kafka_cluster.api_version
+//    kind        = module.customer_cluster.confluent_kafka_cluster.kind
 //
 //    environment {
 //      id = data.confluent_environment.this.id
@@ -35,12 +35,12 @@
 //  operation     = "WRITE"
 //  permission    = "ALLOW"
 //
-//  provider = confluent.inventory_cluster
+//  provider = confluent.customer_cluster
 //}
 //
 //resource "confluent_service_account" "shadow-producer" {
 //  display_name = "shadow-producer"
-//  description  = "Service Account to produce to 'shadowtraffic.*' topics in the 'inventory' Kafka cluster"
+//  description  = "Service Account to produce to 'shadowtraffic.*' topics in the 'customer' Kafka cluster"
 //}
 //
 //resource "confluent_api_key" "shadow-producer-kafka-api-key" {
@@ -53,9 +53,9 @@
 //  }
 //
 //  managed_resource {
-//    id          = module.inventory_cluster.id
-//    api_version = module.inventory_cluster.confluent_kafka_cluster.api_version
-//    kind        = module.inventory_cluster.confluent_kafka_cluster.kind
+//    id          = module.customer_cluster.id
+//    api_version = module.customer_cluster.confluent_kafka_cluster.api_version
+//    kind        = module.customer_cluster.confluent_kafka_cluster.kind
 //
 //    environment {
 //      id = data.confluent_environment.this.id
@@ -76,7 +76,7 @@
 //  operation     = "READ"
 //  permission    = "ALLOW"
 //
-//  provider = confluent.inventory_cluster
+//  provider = confluent.customer_cluster
 //}
 //
 //resource "confluent_kafka_acl" "shadow-consumer-read-on-group" {
@@ -89,5 +89,5 @@
 //  operation     = "READ"
 //  permission    = "ALLOW"
 //
-//  provider = confluent.inventory_cluster
+//  provider = confluent.customer_cluster
 //}

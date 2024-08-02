@@ -40,7 +40,7 @@
 //# Update the config to use a cloud provider and region of your choice.
 //# https://registry.terraform.io/providers/confluentinc/confluent/latest/docs/resources/confluent_kafka_cluster
 //resource "confluent_kafka_cluster" "basic" {
-//  display_name = "inventory"
+//  display_name = "customer"
 //  availability = "SINGLE_ZONE"
 //  cloud        = "AWS"
 //  region       = "us-east-2"
@@ -54,7 +54,7 @@
 //// to 'app-producer' and 'app-consumer' service accounts.
 //resource "confluent_service_account" "app-manager" {
 //  display_name = "app-manager"
-//  description  = "Service account to manage 'inventory' Kafka cluster"
+//  description  = "Service account to manage 'customer' Kafka cluster"
 //}
 //
 //resource "confluent_role_binding" "app-manager-kafka-cluster-admin" {
@@ -108,7 +108,7 @@
 //
 //resource "confluent_service_account" "app-consumer" {
 //  display_name = "app-consumer"
-//  description  = "Service account to consume from 'purchase' topic of 'inventory' Kafka cluster"
+//  description  = "Service account to consume from 'purchase' topic of 'customer' Kafka cluster"
 //}
 //
 //resource "confluent_api_key" "app-consumer-kafka-api-key" {
@@ -151,7 +151,7 @@
 //
 //resource "confluent_service_account" "app-producer" {
 //  display_name = "app-producer"
-//  description  = "Service account to produce to 'purchase' topic of 'inventory' Kafka cluster"
+//  description  = "Service account to produce to 'purchase' topic of 'customer' Kafka cluster"
 //}
 //
 //resource "confluent_api_key" "app-producer-kafka-api-key" {

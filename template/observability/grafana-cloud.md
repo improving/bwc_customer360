@@ -23,13 +23,13 @@ Want to integrate the [Confluent Cloud Metrics](https://api.telemetry.confluent.
    - From `~/kafka-product-team-{domain}/staging`, run `terraform output resource-ids`
    
    ```text
-   ## NOTE: Copy 'inventory' Cluster ID & Flink Scrape Job URL for use in Steps 4 & 5
+   ## NOTE: Copy 'customer' Cluster ID & Flink Scrape Job URL for use in Steps 4 & 5
    
    <<EOT
    'staging' Environment ID: env-3wgvy0
-   'inventory' Cluster ID: lkc-y330rp
-   'inventory' Flink Compute Pool ID: lfcp-7zz36p
-   'inventory' Cluster Admin: "TIVI3VSW6FVJKMNB:zmrQigHKO6ugX0dGnIJI7a1G94lIxUcEo/QoawLU0vDyJtqPargnXgxxJ8p5KJJj"
+   'customer' Cluster ID: lkc-y330rp
+   'customer' Flink Compute Pool ID: lfcp-7zz36p
+   'customer' Cluster Admin: "TIVI3VSW6FVJKMNB:zmrQigHKO6ugX0dGnIJI7a1G94lIxUcEo/QoawLU0vDyJtqPargnXgxxJ8p5KJJj"
     
    ****************************
    Metrics Scrape Job Configs

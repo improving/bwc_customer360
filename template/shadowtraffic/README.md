@@ -7,7 +7,7 @@
 1. Inside the `/shadowtraffic` folder, create a copy of `template_license.env` and rename it to `license.env`
    - NOTE: `.gitignore` will keep the `license.env` file out of your commit history.
 2. Fill in the license details ([Sign Up for Free Trial Here](https://shadowtraffic.io/pricing.html))
-3. `cd shadowtraffic/orders`
+3. `cd shadowtraffic/customers`
 4. Test that things are working by running 👉 `./start-std-out.sh`
    - This will pull the latest shadowtraffic docker image (`--pull=always`) and dump a few samples into your terminal's std out (**these records do not get produced to Kafka**)
 
@@ -48,12 +48,12 @@ In the ShadowTraffic `/config/connections` folder, there is a `template_staging-
 1. Copy + Paste this file, renaming it to `staging-kafka.json`. This will hold your actual connection details and because of this, it's ignored by Git (hence the template vs real file setup).
 2. Now, in the "real" `staging-kafka.json` file we need to replace the contents with our own Confluent Cloud's connection details.
 3. From your `kafka-product-team-*/{env}` folder, run `terraform output shadowtraffic-config` to gather the JSON connection configuration block.
-   - ex. `/kafka-product-team-inventory/staging > terraform output shadowtraffic-config`
+   - ex. `/kafka-product-team-customer/staging > terraform output shadowtraffic-config`
 
    ```json
-   /kafka-product-team-inventory/staging > terraform output shadowtraffic-config
+   /kafka-product-team-customer/staging > terraform output shadowtraffic-config
    
-   # Replace the value in `/shadowtraffic/orders/config/connections/staging-kafka.json` with the value below
+   # Replace the value in `/shadowtraffic/customers/config/connections/staging-kafka.json` with the value below
    
    {
       "bootstrap.servers": "SASL_SSL://pkc-12345.us-east1.gcp.confluent.cloud:9092",
