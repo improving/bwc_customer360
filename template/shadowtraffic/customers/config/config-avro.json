@@ -1,0 +1,41 @@
+{
+  "generators": [
+    {
+      "_gen": "loadJsonFile",
+      "file": "/config/generators/customer-a.json"
+    },
+    {
+      "_gen": "loadJsonFile",
+      "file": "/config/generators/customer-b.json"
+    },
+    {
+      "_gen": "loadJsonFile",
+      "file": "/config/generators/id-mapping.json"
+    }
+  ],
+  "schedule": {
+    "stages": [
+      {
+        "_gen": "loadJsonFile",
+        "file": "/config/stages/seed-customers.json"
+      },
+      {
+        "_gen": "loadJsonFile",
+        "file": "/config/stages/seed-id-mappings.json"
+      },
+      {
+        "_gen": "loadJsonFile",
+        "file": "/config/stages/live.json"
+      }
+    ]
+  },
+  "connections": {
+    "staging-kafka": {
+      "kind": "kafka",
+      "producerConfigs": {
+        "_gen": "loadJsonFile",
+        "file": "/config/connections/staging-kafka.json"
+      }
+    }
+  }
+}

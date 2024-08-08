@@ -1,0 +1,12 @@
+{
+  "generators": [
+    "id-mappings"
+  ],
+  "overrides": {
+    "id-mappings": {
+      "localConfigs": {
+        "maxEvents": 10
+      }
+    }
+  }
+}

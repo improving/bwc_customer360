@@ -1,0 +1,18 @@
+{
+  "generators": [
+    "system-a-customers",
+    "system-b-customers"
+  ],
+  "overrides": {
+    "system-a-customers": {
+      "localConfigs": {
+        "maxEvents": 10
+      }
+    },
+    "system-b-customers": {
+      "localConfigs": {
+        "maxEvents": 10
+      }
+    }
+  }
+}
