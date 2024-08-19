@@ -1,15 +1,35 @@
 {
   "type": "record",
-  "namespace": "shadowtraffic.customer",
-  "name": "GoldenCustomer",
+  "name": "Customer",
+  "namespace": "com.improving.model",
   "fields": [
+    { "name": "id", "type": "string" },
+    { "name": "first_name", "type": "string" },
+    { "name": "last_name", "type": "string" },
+    { "name": "date_of_birth", "type": "string" },
+    { "name": "email", "type": "string" },
+    { "name": "phone", "type": "string" },
+    { "name": "address", "type": "string" },
+    {"name": "last_modified_date","type": "string" }  // ISO 8601 date format
     {
-      "name": "aCustomerID",
-      "type": "string"
-    },
-    {
-      "name": "bCustomerID",
-      "type": "string"
+      "name": "stores",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "StoreInfo",
+          "fields": [
+            { "name": "store_id", "type": "string" },
+            { "name": "customer_id", "type": "string" },
+            { "name": "store_name", "type": "string" },
+            { "name": "store_type", "type": "string" },
+            { "name": "loyalty_points", "type": ["null", "int"], "default": null },
+            { "name": "preferred_store", "type": ["null", "string"], "default": null },
+            { "name": "favorite_drink", "type": ["null", "string"], "default": null },
+            { "name": "last_purchase", "type": ["null", "string"], "default": null }
+          ]
+        }
+      }
     }
   ]
 }

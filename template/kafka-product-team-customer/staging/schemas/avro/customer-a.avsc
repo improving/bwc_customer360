@@ -1,31 +1,17 @@
 {
   "type": "record",
-  "namespace": "shadowtraffic.customer",
   "name": "CustomerA",
+  "namespace": "com.improving.customer",
   "fields": [
-    {
-      "name": "name",
-      "type": "string"
-    },
-    {
-      "name": "membership",
-      "type": "string"
-    },
-    {
-      "name": "creditCardNumber",
-      "type": "string"
-    },
-    {
-      "name": "shippingAddress",
-      "type": "string"
-    },
-    {
-      "name": "directSubscription",
-      "type": "boolean"
-    },
-    {
-      "name": "birthday",
-      "type": "string"
-    }
+    { "name": "store_id", "type": "string" },
+    { "name": "customer_id", "type": "string" },
+    { "name": "first_name", "type": "string" },
+    { "name": "last_name", "type": "string" },
+    { "name": "email", "type": "string" },
+    { "name": "phone", "type": "string" },
+    { "name": "address", "type": "string" },
+    { "name": "loyalty_points", "type": "int" },
+    { "name": "preferred_store", "type": "string" },
+    { "name": "last_modified_date", "type": "string" }  // ISO 8601 date format
   ]
 }
