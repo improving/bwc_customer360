@@ -2,7 +2,7 @@ terraform {
   required_providers {
     confluent = {
       source  = "confluentinc/confluent"
-      version = "1.80.0"
+      version = "1.83.0"
     }
   }
 }
@@ -30,12 +30,16 @@ module "staging_environment" {
   }
 }
 
-//module "production_environment" {
-//  source = "../modules/confluent_cloud_environment"
-//
-//  environment_display_name = "production"
-//
-//  providers = {
-//    confluent = confluent
-//  }
-//}
+module "customer_cluster" {
+  source = "../modules/product_team_standard_cluster"
+
+  cluster_display_name   = "customer"
+  environment_id         = module.staging_environment.id
+  enable_flink_workspace = true
+
+  providers = {
+    confluent = confluent
+  }
+
+  depends_on = [ module.staging_environment ]
+}

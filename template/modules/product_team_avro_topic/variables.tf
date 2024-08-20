@@ -14,3 +14,37 @@ variable "value_schema_file" {
   type        = string
 }
 
+variable "kafka_api_key" {
+  type = string
+}
+
+variable "kafka_api_secret" {
+  type = string
+}
+
+variable "kafka_id" {
+  type = string
+}
+
+variable "kafka_rest_endpoint" {
+  type = string
+}
+
+variable "schema_registry_api_key" {
+  type = string
+}
+
+variable "schema_registry_api_secret" {
+  type = string
+}
+
+variable "schema_registry_id" {
+  type = string
+}
+
+variable "schema_registry_rest_endpoint" {
+  type = string
+}
+
+
+

@@ -40,3 +40,14 @@ variable "cloud_region" {
     error_message = "The cloud_provider must be 'us-east1' at this time."
   }
 }
+
+variable "cloud_availability" {
+  description = "The availability of the cluster within the cloud provider"
+  type        = string
+  default     = "SINGLE_ZONE"
+
+  validation {
+    condition     = contains(["SINGLE_ZONE"], var.cloud_availability)
+    error_message = "The cloud_availability must be 'SINGLE_ZONE' at this time."
+  }
+}

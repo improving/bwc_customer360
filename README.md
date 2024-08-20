@@ -11,26 +11,13 @@ This repository contains a Terraform template to provision Confluent Cloud envir
 
 ## Environment Overview
 
-![env-overview](./assets/demo-env.png)
-
-> Image Source: [./assets/demo-env.excalidraw](./assets/demo-env.excalidraw)
+![env-overview](./assets/bwc_customer360.png)
 
 ## Prerequisites
 
 1. [Sign up for Confluent Cloud](https://confluent.cloud/home) with your email.
 
-    > NOTE: Each trial is only good for 30 days, so if you've done this before you can add a +1, +2, etc suffix to the email to create "unique" accounts
-    > * ex) `matthew.schroeder+1@improving.com`
-    > * ex) `matthew.schroeder+2@improving.com`
-
-   - [ ] Verify email
-   - [ ] Boost free trial credits to $750 with additional promo codes (_codes subject to change_)
-     - $400 is given by default
-     - $50 -> `C50INTEG`
-     - $200 -> `DEVOPS200`
-     - $100 -> `CLOUD100`
-
-> ⚠️️ Although you're now rolling in $750 of lush credits, be sure to tear your environment(s) down after each use.
+> ⚠️️ Although you're now rolling in $400 of lush credits, be sure to tear your environment(s) down after each use.
 
 2. [Create a Confluent Cloud API Key](https://registry.terraform.io/providers/confluentinc/confluent/latest/docs/guides/sample-project#create-a-cloud-api-key)
 
@@ -54,20 +41,14 @@ The `./template` folder contains a few key subfolders - in a real env, these wou
 
 ```txt
 ./template
-├── kafka-ops-team  
+├── kafka-environment  
 │   └── main.tf                     # environment resources
-├── kafka-product-team-{domain}
-│   ├── development
-│   │   ├── flink-statements
-│   │   │   └── ... flink .sql files
-│   │   ├── schemas
-│   │   │   └── ... schema files
-│   │   ├── main.tf                 # environment data sources
-│   │   └── cluster-{name}.tf       # provision cluster ${name} & cluster resources
-│   ├── staging
-│   │   └── ... mirrors development
-│   └── production
-│   │   └── ... mirrors staging
+│   └── topics.tf                   # topics
+│   └── flink.tf                    # flink statements
+│   ├── flink-statements
+│   │   └── ... flink .sql files
+│   ├── schemas
+│   │   └── ... schema files
 ├── modules
 │   ├── confluent_cloud_environment # shared module to provision environments
 │   ├── product_team_avro_topic     # shared module to provision topics tied to an Avro schema
@@ -82,26 +63,20 @@ The `./template` folder contains a few key subfolders - in a real env, these wou
         └── start-kafka.sh          # script to run shadowtraffic, producing results to Kafka (configs required)
 ```
 
-### kafka-ops-team
+### kafka-environment
 
-This repo (folder) holds the shared [Environment](https://docs.confluent.io/cloud/current/access-management/hierarchy/cloud-environments.html#environments-on-ccloud) configurations (think `development`, `staging`, `production`). All environments should be configured within this central ops-team space.
+This repo (folder) holds the Confluent Cloud infrastructure and resources required for this demo.  We leverage [Terraform](https://developer.hashicorp.com/terraform) to deploy all of these resources with [Confluent provider](https://registry.terraform.io/providers/confluentinc/confluent/1.83.0)
 
-> A Confluent Cloud environment contains Kafka clusters and deployed components, such as Connect, ksqlDB, and Schema Registry. You can define multiple environments in an organization, and there is no charge for creating or using additional environments. Different departments or teams can use separate environments to avoid interfering with each other.
+The following resources will automatically created to give you a fully featured environment:
 
-### kafka-product-team-{domain}
+    * Environment
+    * Clusters
+    * Topics
+    * Schemas
+    * Flink Compute Pools
+    * Service Accounts / ACLs
+    * ... and more
 
-In organizations with domain-aligned teams, each team would have their own repo that manages their resources.
-
-Product Team Resources (things they can create) Include -
-
-* Clusters
-* Topics
-* Schemas
-* Flink Compute Pools
-* Service Accounts / ACLs
-* ... and more
-
-With an Environment in place, Product Teams are empowered to create their own systems.
 
 ### modules
 
@@ -147,53 +122,67 @@ export TF_VAR_confluent_cloud_api_secret="<cloud_api_secret>"
 
 ### Provisioning Confluent Cloud **Environments**
 
-First, provision your environments from the `kafka-ops-team` repo (folder).
+First, provision your environments from the `kafka-environment` repo (folder).
 
-1. `cd template/kafka-ops-team`
+1. `cd template/kafka-environment`
 2. `terraform init`
 3. `terraform apply` # approve after review, this may take a few minutes to complete
    - As of V1.80.0 of the Confluent Provider, you will receive a "Warning: Deprecated Resource" around Schema Registry. Ignore this.
    - As of V2.0.0 of the Confluent Provider, this Warning should be gone.
 4. Confirm the Environments are created in your [Confluent Cloud](https://confluent.cloud/home) account
 
-If needed, the `kafka-ops-team/outputs.tf/staging-resource-ids` will emit a variety of useful identifiers, keys, & urls.
+If needed, the `kafka-environment/outputs.tf/resource-ids` will emit a variety of useful identifiers, keys, & urls.
 
 ```bash
-> terraform output staging-resource-ids
+> terraform output resource-ids
             
 <<EOT
 
 ====
 
-Staging Environment ID:   env-123456
-Staging Schema Registry ID:   lsrc-123456
-Staging Schema Registry Rest Endpoint:   https://psrc-123456.us-east1.gcp.confluent.cloud
+Staging Environment ID:   env-kkv293
+Staging Schema Registry ID:   def-3drm1o
+Staging Schema Registry Rest Endpoint:   https://eiw-23932.us-east1.gcp.confluent.cloud
 Staging MetricsViewer API Key: xxxxx:xxxxxxxx
-Staging EnvironmentAdmin/AccountAdmin API Key:  xxxxx:xxxxxxxx
+Staging EnvironmentAdmin/AccountAdmin API Key:  Txxxxx:xxxxxxxx
+
+Customer Cluster ID: xyz-g5n70n
+Customer Flink Compute Pool ID: abc-1232ms
+Customer Cluster Admin: xxxxx:xxxxxxxx
+
+****************************
+Metrics Scrape Job Configs
+****************************
+Flink Scrape Job URL:   https://api.telemetry.confluent.cloud/v2/metrics/cloud/export?resource.compute_pool.id=abc-1232ms
+Cluster Scrape Job URL: https://api.telemetry.confluent.cloud/v2/metrics/cloud/export?resource.kafka.id=xyz-g5n70n
+
+**************
+Client Configs
+**************
+
+"bootstrap.servers": "SASL_SSL://pkc-619z3.us-east1.gcp.confluent.cloud:9092",
+
+# Customer-Cluster-Developer-Write sasl jaas config
+"sasl.jaas.config": "org.apache.kafka.common.security.plain.PlainLoginModule required username='xxxxx' password='xxxxxxxxxx';",
+
+# Customer-Cluster-Developer-Read sasl jaas config
+"sasl.jaas.config": "org.apache.kafka.common.security.plain.PlainLoginModule required username='xxxxx' password='xxxxxxxxxx';",
+
+# schema registry
+"schema.registry.url": "https://psrc-571gzn.us-east1.gcp.confluent.cloud",
+"basic.auth.credentials.source": "USER_INFO",
+"basic.auth.user.info": "xxxxx:xxxxxxxx",
+
+**************
+**************
+
+Getting Started with Flink:
+
+> confluent flink shell --compute-pool abc-1232ms --environment env-kkv293
+
+
+EOT
 ```
-
-### Provisioning Product Team Resources (Staging Environment)
-
-Next, provision your clusters, Flink compute pools, topics, and more via the product team repo (folder).
-
-> ⚠️ This is a 2-step process due to the use of a cluster-specific [aliased `provider`](https://developer.hashicorp.com/terraform/language/providers/configuration#alias-multiple-provider-configurations) to simplify the configuration of resources for the cluster. With the cluster-specific provider, you can just pass the entire aliased `provider` on the resources rather than repeating all the configurations.
-
-Provision the cluster, Flink compute pool (optional), and cluster API Keys -
-
-> Note: Make sure the aliased provider and kafka topic resources are commented out.
-
-1. `cd template/kafka-product-team-customer/staging`
-2. `terraform init`
-3. `terraform apply` # approve after review
-
-The cluster-specific [aliased `provider`](https://developer.hashicorp.com/terraform/language/providers/configuration#alias-multiple-provider-configurations) can't be created until the cluster exists.
-
-4. Uncomment the aliased provider as well as all other resources that leverage the provider (topics, flink statements, etc).
-5. Run `terraform apply` # approve after review
-
-⚠️ There is no data in the cluster in this point. The following section will get data into the cluster via ShadowTraffic.
-
-> Copy `/staging` into `/production` and repeat the above steps if you'd like to provision a cluster in another environment. Modify the `display_name` value on the `/main.tf/confluent_environment` data source.
 
 ### Producing Data with ShadowTraffic
 

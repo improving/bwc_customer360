@@ -10,14 +10,14 @@
     { "name": "email", "type": "string" },
     { "name": "phone", "type": "string" },
     { "name": "address", "type": "string" },
-    {"name": "last_modified_date","type": "string" }  // ISO 8601 date format
+    { "name": "last_modified_date", "type": "string" },  // ISO 8601 date format
     {
-      "name": "stores",
+      "name": "customer_info",
       "type": {
         "type": "array",
         "items": {
           "type": "record",
-          "name": "StoreInfo",
+          "name": "CustomerInfo",
           "fields": [
             { "name": "store_id", "type": "string" },
             { "name": "customer_id", "type": "string" },
