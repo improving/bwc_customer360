@@ -22,16 +22,13 @@ Below is a guide to the `/shadowtraffic` directory and the various files/folders
 │   │   ├── connections
 │   │   │   ├── template_staging-kafka.json  # Template Connection File: Copy + Paste + Rename to "staging-kafka.json" 
 │   │   │   ├── staging-kafka.json           # JSON connection block for the staging cluster (`terraform output shadowtraffic-config`) 
-│   │   │   └── ... other connection files
 │   │   ├── generators
-│   │   │   ├── customer-profile.json        # Generator that produces Customer Profiles
-│   │   │   ├── item-profile.json            # Generator that produces Item Profiles (Products)
-│   │   │   ├── order.json                   # Generator that produces Orders (Customer buying Item(s))
-│   │   │   └── ... other generator files
+│   │   │   ├── customer-a.json              # Generator that produces Customer A Profiles
+│   │   │   ├── customer-b.json              # Generator that produces Customer B Profiles
+│   │   │   ├── id-mapping.json              # Generator that produces id-mapping entries
 │   │   ├── stages
-│   │   │   ├── seed.json                    # Configuration for the "seed" stage (initial quantities of each entity)
+│   │   │   ├── seed-customers.json          # Configuration for the "seed" stage (initial quantities of each entity)
 │   │   │   ├── live.json                    # Configuration for the "live" stage (long running phase)
-│   │   │   └── ... other seed files
 │   │   └── config-avro.json                 # Root configuration that glues together generators, stages, and connections
 │   ├── start-kafka.sh                       # Runs ShadowTraffic, pointed at staging-kafka connection (Confluent Cloud)
 │   └── start-std-out.sh                     # Runs ShadowTraffic, pointed at std-out (local) -- useful for testing
@@ -47,11 +44,11 @@ In the ShadowTraffic `/config/connections` folder, there is a `template_staging-
 
 1. Copy + Paste this file, renaming it to `staging-kafka.json`. This will hold your actual connection details and because of this, it's ignored by Git (hence the template vs real file setup).
 2. Now, in the "real" `staging-kafka.json` file we need to replace the contents with our own Confluent Cloud's connection details.
-3. From your `kafka-product-team-*/{env}` folder, run `terraform output shadowtraffic-config` to gather the JSON connection configuration block.
-   - ex. `/kafka-product-team-customer/staging > terraform output shadowtraffic-config`
+3. From your `kafka-environment` folder, run `terraform output shadowtraffic-config` to gather the JSON connection configuration block.
+   - ex. `/kafka-environemnt > terraform output shadowtraffic-config`
 
    ```json
-   /kafka-product-team-customer/staging > terraform output shadowtraffic-config
+   /kafka-environment > terraform output shadowtraffic-config
    
    # Replace the value in `/shadowtraffic/customers/config/connections/staging-kafka.json` with the value below
    
