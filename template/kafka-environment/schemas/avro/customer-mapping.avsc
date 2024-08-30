@@ -1,0 +1,20 @@
+{
+  "type": "record",
+  "name": "IdMapping",
+  "namespace": "com.improving.customer",
+  "fields": [
+    { 
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "aCustomerID",
+      "type": "string"
+    },
+    {
+      "name": "bCustomerID",
+      "type": "string"
+    },
+    { "name": "last_modified_date", "type": "string" }   
+  ]
+}

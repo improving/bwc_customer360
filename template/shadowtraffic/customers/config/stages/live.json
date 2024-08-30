@@ -1,0 +1,42 @@
+{
+  "generators": [
+    "system-a-customers",
+    "system-b-customers",
+    "id-mappings"
+  ],
+  "overrides": {
+    "system-a-customers": {
+      "localConfigs": {
+        "throttleMs": {
+          "_gen": "uniformDistribution",
+          "bounds": [
+            1000,
+            2000
+          ]
+        }
+      }
+    },
+    "system-b-customers": {
+      "localConfigs": {
+        "throttleMs": {
+          "_gen": "uniformDistribution",
+          "bounds": [
+            1000,
+            3000
+          ]
+        }
+      }
+    },
+    "id-mappings": {
+      "localConfigs": {
+        "throttleMs": {
+          "_gen": "uniformDistribution",
+          "bounds": [
+            6000,
+            8000
+          ]
+        }
+      }
+    }
+  }
+}

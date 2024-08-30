@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "CustomerB",
+  "namespace": "com.improving.customer",
+  "fields": [
+    { "name": "name", "type": "string" },
+    { "name": "email_address", "type": "string" },
+    { "name": "contact_number", "type": "string" },
+    { "name": "favorite_drink", "type": "string" },
+    { "name": "birthday", "type": "string" },
+    { "name": "membership_level", "type": "string" },  
+    { "name": "membership_points", "type": "int" },  
+    { "name": "last_modified_date", "type": "string" }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+	"name": "system-a-customers",
+	"topic": "demo.customers.system-a",
+	"key": {
+		"_gen": "uuid"
+	},
+	"value": {  
+		"first_name": {
+			"_gen": "string",
+			"expr": "#{Name.firstName}"
+		},
+		"last_name": {
+		"_gen": "string",
+		"expr": "#{Name.lastName}"
+		},
+		"email": {
+			"_gen": "string",
+			"expr": "#{Internet.emailAddress}"
+		},
+		"phone": {
+			"_gen": "string",
+			"expr": "#{PhoneNumber.cellPhone}"
+		},    
+		"address": {
+			"_gen": "string",
+			"expr": "#{Address.fullAddress}"
+		},    
+		"loyalty_tier": {
+			"_gen": "oneOf",
+			"choices": [
+			"diamond",
+			"sapphire",
+			"emerald"
+			]
+		},
+		"loyalty_points": {
+			"_gen": "string",
+			"expr": "#{Number.numberBetween '0','3000'}",
+			"cast": "integer"
+		},
+		"last_modified_date": {
+			"_gen": "formatDateTime",
+			"ms": {
+				"_gen": "now"
+			},
+			"format": "yyyy-MM-dd'T'HH:mm:ss"
+		}
+	},
+	"localConfigs": {
+		"kafkaValueAvroSchemaHint": {
+			"_gen": "loadJsonFile",
+			"file": "/schemas/avro/customer-a.avsc"
+		}
+	}
+}
