@@ -1,7 +1,7 @@
 module "customers_a_topic" {
   source = "../modules/product_team_avro_topic"
 
-  topic_name        = "shadowtraffic.customers.system-a"
+  topic_name        = "demo.customers.system-a"
   value_schema_file = file("./schemas/avro/customer-a.avsc")
 
   kafka_id            = module.customer_cluster.confluent_kafka_cluster.id
@@ -21,7 +21,7 @@ module "customers_a_topic" {
 module "customers_b_topic" {
   source = "../modules/product_team_avro_topic"
 
-  topic_name        = "shadowtraffic.customers.system-b"
+  topic_name        = "demo.customers.system-b"
   value_schema_file = file("./schemas/avro/customer-b.avsc")
   
   kafka_id            = module.customer_cluster.confluent_kafka_cluster.id
@@ -40,7 +40,7 @@ module "customers_b_topic" {
 module "customers_mapping_topic" {
   source = "../modules/product_team_avro_topic"
 
-  topic_name        = "shadowtraffic.customers.id-mapping"
+  topic_name        = "demo.customers.id-mapping"
   value_schema_file = file("./schemas/avro/customer-mapping.avsc")
 
   kafka_id            = module.customer_cluster.confluent_kafka_cluster.id
@@ -59,7 +59,7 @@ module "customers_mapping_topic" {
 module "customers_golden_topic" {
   source = "../modules/product_team_avro_topic"
 
-  topic_name        = "shadowtraffic.customers.golden"
+  topic_name        = "demo.customers.golden"
   value_schema_file = file("./schemas/avro/customer-golden.avsc")
 
   kafka_id            = module.customer_cluster.confluent_kafka_cluster.id
@@ -74,23 +74,3 @@ module "customers_golden_topic" {
 
   depends_on = [ module.customer_cluster ]
 }
-
-# resource "confluent_flink_statement" "customer_order_join" {
-#   statement  = file("./flink-statements/customer-mapping-join.sql")
-
-#   statement_name = "customer-order-item-customer-join"
-
-#   properties = local.flink_default_properties
-
-#   depends_on = [
-#     # source
-#     module.customers_a_topic,
-#     module.customers_b_topic,
-#     module.customers_mapping_topic,
-
-#     # sink
-#     module.customers_golden_topic
-#   ]
-
-#   provider = confluent.customer_cluster
-# }

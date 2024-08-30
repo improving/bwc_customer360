@@ -3,20 +3,18 @@
   "name": "IdMapping",
   "namespace": "com.improving.customer",
   "fields": [
-    { "name": "id", "type": "string" },
+    { 
+      "name": "id",
+      "type": "string"
+    },
     {
-      "name": "linked_customers",
-      "type": {
-        "type": "array",
-        "items": {
-          "type": "record",
-          "name": "LinkedCustomer",
-          "fields": [
-            { "name": "store_id", "type": "string" },
-            { "name": "customer_id", "type": "string" }
-          ]
-        }
-      }
-    }
+      "name": "aCustomerID",
+      "type": "string"
+    },
+    {
+      "name": "bCustomerID",
+      "type": "string"
+    },
+    { "name": "last_modified_date", "type": "string" }   
   ]
 }

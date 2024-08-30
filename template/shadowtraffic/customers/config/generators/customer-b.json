@@ -1,6 +1,6 @@
 {
   "name": "system-b-customers",
-  "topic": "shadowtraffic.customers.system-b",
+  "topic": "demo.customers.system-b",  
   "key": {
     "_gen": "uuid"
   },
@@ -9,28 +9,47 @@
       "_gen": "string",
       "expr": "#{Name.full_name}"
     },
-    "membership": {
+    "email_address": {
+      "_gen": "string",
+      "expr": "#{Internet.emailAddress}"
+    },
+    "contact_number": {
+      "_gen": "string",
+      "expr": "#{PhoneNumber.cellPhone}"
+    },      
+    "favorite_drink": {
       "_gen": "oneOf",
       "choices": [
-        "gold",
-        "silver",
-        "bronze"
+        "Americano",
+        "Coffee",
+        "Cold Brew Coffee",
+        "Latte",
+        "Water"
       ]
     },
-    "creditCardNumber": {
-      "_gen": "string",
-      "expr": "#{Business.creditCardNumber}"
-    },
-    "address": {
-      "_gen": "string",
-      "expr": "#{Address.fullAddress}"
-    },
-    "directSubscription": {
-      "_gen": "boolean"
-    },
     "birthday": {
-      "_gen": "string", "expr": "#{Date.birthday '18','80'}"
-    }
+      "_gen": "string", "expr": "#{Date.birthday '16','80'}"
+    },
+		"membership_level": {
+			"_gen": "oneOf",
+			"choices": [
+			"gold",
+			"silver",
+			"bronze"
+			]
+		},
+		"membership_points": {
+			"_gen": "string",
+			"expr": "#{Number.numberBetween '0','300'}",
+			"cast": "integer"
+		},    
+    "last_modified_date": {
+      "_gen": "formatDateTime",
+      "ms": {
+          "_gen": "now"
+      },
+      "format": "yyyy-MM-dd'T'HH:mm:ss"
+    }    
   },
   "localConfigs": {
     "kafkaValueAvroSchemaHint": {

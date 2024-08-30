@@ -1,7 +1,8 @@
 {
   "generators": [
     "system-a-customers",
-    "system-b-customers"
+    "system-b-customers",
+    "id-mappings"
   ],
   "overrides": {
     "system-a-customers": {

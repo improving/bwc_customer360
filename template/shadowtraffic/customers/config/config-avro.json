@@ -17,14 +17,6 @@
     "stages": [
       {
         "_gen": "loadJsonFile",
-        "file": "/config/stages/seed-customers.json"
-      },
-      {
-        "_gen": "loadJsonFile",
-        "file": "/config/stages/seed-id-mappings.json"
-      },
-      {
-        "_gen": "loadJsonFile",
         "file": "/config/stages/live.json"
       }
     ]

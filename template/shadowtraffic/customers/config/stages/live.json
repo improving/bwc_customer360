@@ -10,8 +10,8 @@
         "throttleMs": {
           "_gen": "uniformDistribution",
           "bounds": [
-            30000,
-            60000
+            1000,
+            2000
           ]
         }
       }
@@ -21,8 +21,8 @@
         "throttleMs": {
           "_gen": "uniformDistribution",
           "bounds": [
-            10000,
-            60000
+            1000,
+            3000
           ]
         }
       }
@@ -32,8 +32,8 @@
         "throttleMs": {
           "_gen": "uniformDistribution",
           "bounds": [
-            10000,
-            60000
+            6000,
+            8000
           ]
         }
       }
